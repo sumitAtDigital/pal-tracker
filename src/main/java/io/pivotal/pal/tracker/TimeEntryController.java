@@ -16,9 +16,11 @@ public class TimeEntryController {
         this.timeEntriesRepo = timeEntriesRepo;
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<TimeEntry> create(@RequestBody TimeEntry timeEntry) {
-        TimeEntry createdTimeEntry = timeEntriesRepo.create(timeEntry);
+
+        TimeEntry createdTimeEntry = new TimeEntry(123, 456, "today", 8);
+        timeEntriesRepo.create(createdTimeEntry);
 
         return new ResponseEntity<>(createdTimeEntry, HttpStatus.CREATED);
     }
